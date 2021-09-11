@@ -1,0 +1,23 @@
+<div class="user" [ngClass]="{blocked: !(active$ | async)?.status}">
+    <p class="id">{{user.id}}</p>
+    <div class="logo">
+      <svg>
+        <use *ngIf="(active$ | async)?.status" href="assets/icons/admin_sprite.svg#src-7"></use>
+        <use *ngIf="!(active$ | async)?.status" href="assets/icons/admin_sprite.svg#src-9"></use>
+      </svg>
+    </div>
+    <p class="name">{{user?.email}}</p>
+    <p class="added_at">
+      <!--    <svg><use href="assets/icons/channel_item.svg#src-4"></use></svg>-->
+      <span>{{user?.created_at}}</span>
+    </p>
+    <div class="actions">
+      <a (click)="toggleBlock(user.hash)">
+        <svg>
+          <use *ngIf="(active$ | async)?.status" href="assets/icons/channel_item.svg#src-6"></use>
+          <use *ngIf="!(active$ | async)?.status" href="assets/icons/channel_item.svg#src-7"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  

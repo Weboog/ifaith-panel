@@ -1,0 +1,254 @@
+section.form {
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 40rem;
+      background-color: #272727;
+      padding: 3rem;
+      border-radius: 1rem;
+      p.title {
+        font-size: 1.6rem;
+        text-align: center;
+        grid-column: span 2;
+        margin-bottom: 2rem;
+      }
+      div.widget {
+        position: relative;
+        grid-column: span 2;
+        // &:not(:first-of-type) {
+          margin-top: 2rem;
+        // }
+        div.checking {
+          position: absolute;
+          right: 0.7rem;
+          top: 3.2rem;
+          p.available {
+            padding: 0.8rem;
+            font-weight: 600;
+            line-height: 80%;
+            background-color: lighten(green, 60);
+            color: darkgreen;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            &.error {
+              background-color: lighten(lightpink, 8);
+              color: darken(crimson, 10);
+            }
+          }
+        }
+        div.erros{
+
+        }
+        a.unset {
+          transition: all 0.1s ease-in;
+          position: absolute;
+          display: block;
+          text-decoration: none;
+          border: 1px solid darken(yellow, 10);
+          right: 0.5rem;
+          bottom: 0.5rem;
+          padding: 1rem;
+          border-radius: 3px;
+          line-height: 40%;
+          font-size: 1.2rem;
+          color: darken(yellow, 10);
+          cursor: pointer;
+          &:hover {
+            background-color: darken(yellow, 10);
+            color: #333;
+          }
+        }
+      }
+      p.message {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: lighten(green, 50);
+        padding: 2rem;
+        border-radius: 1rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: darken(green, 10);
+        letter-spacing: 0.1rem;
+        grid-column: 1 / -1;
+        &.created ~ * {
+          //display: none;
+        }
+        &.updated ~ * {
+          display: none;
+        }
+        a.close {
+          font-size: 2rem;
+          color: darken(green, 10);
+          text-decoration: none;
+        }
+      }
+      p.alert {
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 0.5rem;
+        color: darken(crimson, 10);
+        margin-top: 0.5rem;
+        background-color: lighten(lightpink, 8);
+        border-radius: 0.2rem;
+        &:last-child {
+        }
+      }
+      p.error {
+        background-color: lighten(lightpink, 5);
+        color: darken(crimson, 10);
+      }
+      a.cancel {
+        transition: color 0.2s ease-in;
+        text-decoration: none;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: white;
+        align-self: center;
+        justify-self: center;
+        &:hover {
+          color: darken(yellow, 10);
+        }
+      }
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+      label {
+        position: relative;
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        &:not(:first-child) {
+          margin-top: 1.5rem;
+        }
+        span.label {
+          font-size: 1.4rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+        &.file {
+          span.placeholder {
+            background-color: #333;
+            font-size: 1.4rem;
+            padding: 1rem 2rem;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 0;
+          }
+        }
+        input {
+          transition: border-bottom-color 0.2s ease-in;
+          background: #444;
+          border: none;
+          border-radius: 3px;
+          padding: 1rem 1.5rem;
+          color: white;
+          font-size: 1.4rem;
+          letter-spacing: 0.1rem;
+          border-bottom: 2px solid transparent;
+          outline: none;
+          &:focus {
+            border-bottom-color: darken(yellow, 10);
+          }
+          &:invalid {
+            // border-bottom-color: crimson;
+          }
+          &[type="file"] {
+            display: none;
+          }
+        }
+      }
+      div.error_wrapper {
+        grid-column: span 2;
+      }
+      div.switcher {
+        grid-column: 1 / -1;
+        div.file_exists {
+          margin-top: 1.5rem;
+          p {
+            padding: 1rem 1.5rem;
+            border: 1px solid darken(yellow, 20);
+            border-radius: 0.3rem;
+            color: darken(yellow, 10);
+            font-size: 1.4rem;
+            //font-weight: bold;
+          }
+        }
+        .radio_container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 1.5rem;
+          label.switch_item {
+            padding: 1rem 2rem;
+            border-radius: 3px;
+            font-size: 1.4rem;
+            background: #444;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            &:nth-of-type(1) {
+              grid-column: 1 / 2;
+            }
+            &:nth-of-type(2) {
+              grid-column: 2 / 3;
+            }
+          }
+          div.widget {
+            display: none;
+            flex-direction: column;
+            margin-top: 1.5rem;
+            label {
+              width: 100%;
+            }
+          }
+          input[type="radio"] {
+            display: none;
+            &:checked + label {
+              color: #333;
+              background-color: darken(yellow, 10);
+              font-weight: bold;
+            }
+            &:first-of-type:checked ~ #link {
+              display: flex;
+            }
+            &:last-of-type:checked ~ #file {
+              display: flex;
+            }
+          }
+        }
+      }
+      input[type="submit"] {
+        transition: background-color 0.2s ease-in;
+        border: none;
+        background-color: darken(yellow, 10);
+        padding: 1rem 2rem;
+        margin-top: 0.5rem;
+        border-radius: 3px;
+        color: #333333;
+        font-size: 1.4rem;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+          background-color: darken(yellow, 15);
+        }
+        &.disabled {
+          background-color: grey;
+          cursor: unset;
+        }
+      }
+      div.controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        grid-column: span 2;
+        margin-top: 1.5rem;
+      }
+    }
+  }
+}

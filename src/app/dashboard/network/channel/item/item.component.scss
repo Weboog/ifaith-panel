@@ -1,0 +1,87 @@
+
+  div.channel{
+    transition: all .2s ease-in;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    border-radius: .5rem;
+    font-size: 1.4rem;
+    &:hover{
+      color: #333333;
+      background-color: darken(yellow, 10);
+      & p.id{
+        color: #333333;
+      }
+      & svg{
+        fill: #333;
+      }
+    }
+    &.disabled{
+      &:hover{
+        background-color: #777;
+        *{
+          color: #333;
+        }
+      }
+      &::before{
+        transition: all .1s ease-in;
+        content: '';
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: crimson;
+      }
+      *{
+        color: #666;
+      }
+      img{
+        filter: grayscale(100%);
+      }
+    }
+    svg{
+      width: 2.4rem;
+      height: 2.4rem;
+      fill: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    p.id{
+      // align-self: center;
+      font-weight: bold;
+      color: darken(yellow, 10);
+      width: 2.5rem;
+      max-width: 2.5rem;
+    }
+    div.logo{
+      width: 6rem;
+      img{
+        width: 100%;
+      }
+    }
+    p.name{
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    p.added_at{
+      display: flex;
+      align-items: center;
+      color: #999;
+      font-size: 1.2rem;
+      svg{
+        margin-right: 1rem;
+      }
+    }
+    div.actions{
+      display: flex;
+      gap: 1rem;
+      margin-left: auto;
+      a:not(:first-of-type){
+        margin-left: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+  

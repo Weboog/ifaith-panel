@@ -1,0 +1,13 @@
+<ng-container *ngIf="channels$ | async as channels; else loading">
+  <p class="title">Total : {{ channels?.length }}</p>
+  <section class="list">
+    <app-item
+      *ngFor="let channel of channels"
+      [channel]="channel"
+      (deleteSelf)="deleteItem(channel.hash)"
+    ></app-item>
+  </section>
+</ng-container>
+<ng-template #loading>
+  <p>Loading list ...</p>
+</ng-template>

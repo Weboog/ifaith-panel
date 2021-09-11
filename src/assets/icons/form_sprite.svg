@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 24 24">
+    <g id="src-1" class="icon">
+      <path
+        d="M14 2l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8m4 18V9h-5V4H6v16h12m-2-2l-2.5-1.7V18H8v-5h5.5v1.7L16 13v5z"
+        fill="white"/>
+      <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"/>
+    </g>
+  </svg>
+  <svg viewBox="0 0 24 24">
+    <g id="src-2" class="icon">
+      <g fill="none">
+        <path d="M9 20H6a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4h11a4 4 0 0 1 4 4v3" stroke="white" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 2v2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 2v2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 8h19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.5 15.643l-1.5 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="17" cy="17" r="5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"/>
+    </g>
+  </svg>
+</svg>

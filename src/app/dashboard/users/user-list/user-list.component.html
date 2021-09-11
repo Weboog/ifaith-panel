@@ -1,0 +1,11 @@
+<section class="users">
+    <header>
+      <h1>Users</h1>
+    </header>
+    <div class="list" *ngIf="users$ | async as users">
+      <p class="title">Total : {{users.length}}</p>
+      <div *ngFor="let user of users">
+        <app-user-item [user]="user"></app-user-item>
+      </div>
+    </div>
+  </section>

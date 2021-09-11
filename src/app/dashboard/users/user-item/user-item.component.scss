@@ -1,0 +1,66 @@
+p.title{
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    //font-weight: lighter;
+  }
+  div.user{
+    transition: all .2s ease-in;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    font-size: 1.4rem;
+    & > *:not(:last-child){
+      margin-right: 2rem;
+    }
+    &:hover{
+      color: #333333;
+      background-color: darken(yellow, 10);
+      & p.id{
+        color: #333333;
+      }
+      & svg{
+        fill: #333;
+      }
+    }
+    svg{
+      width: 2.4rem;
+      height: 2.4rem;
+      fill: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    p.id{
+      font-weight: bold;
+      color: darken(yellow, 10);
+      width: 2.5rem;
+      max-width: 2.5rem;
+    }
+    div.logo{
+  
+    }
+    p.name{
+      font-weight: bold;
+    }
+    p.added_at{
+      display: flex;
+      align-items: center;
+      color: #999;
+      font-size: 1.2rem;
+      svg{
+        margin-right: 1rem;
+      }
+    }
+    div.actions{
+      display: flex;
+      gap: 1rem;
+      margin-left: auto;
+      a{
+        cursor: pointer;
+      }
+    }
+    &.blocked{
+      color: #777 !important;
+    }
+  }
+  

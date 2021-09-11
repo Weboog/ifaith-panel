@@ -1,0 +1,19 @@
+<section>
+    <header>
+      <div class="img_container">
+        <img src="assets/logo.png" alt="">
+        <p class="copyright">&copy;2021 iFaith.tv All rights reserved.</p>
+      </div>
+      <h1>Admin panel</h1>
+    </header>
+    <form [formGroup]="loginForm" (submit)="onsubmit()">
+      <label for="email">Email</label>
+      <input type="text" id="email" formControlName="email" placeholder="Example@email.com">
+  <!--    <p class="error_text">Email format is invalid</p>-->
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" placeholder="Password">
+      <div class="spacer"></div>
+      <input type="submit" value="Login">
+    </form>
+  </section>
+  

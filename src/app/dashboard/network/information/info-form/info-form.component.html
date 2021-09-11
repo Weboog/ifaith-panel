@@ -1,0 +1,86 @@
+<section class="input">
+    <div>
+      <form [formGroup]="infoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <p *ngIf="!executed" class="form_title">Create information for the channel</p>
+        <p
+          *ngIf="executed" class="message"
+          [ngClass]="{'error': !executed, 'updated': updated }">
+          {{ message }}
+          
+          <a 
+          href="#" 
+          class="close"
+          [routerLink]="['../../default']" 
+          [queryParams]="{uId: qParams.uId, cId: qParams.cId, cName: qParams.cName}"
+          *ngIf="updated">&times;</a>
+        </p>
+        <input type="hidden" formControlName="user_id">
+        <input type="hidden" formControlName="channel_id">
+        <input type="hidden" formControlName="channel_name">
+
+
+        <label class="file" *ngIf="setAvatar$ | async">
+          <span>Avatar image</span>
+          <span class="placeholder" *ngIf="infoForm.get('avatar') as avatar">
+            {{ avatar?.value == null ? 'Browse files ...' : avatar?.value?.name }}
+          </span>
+          <input type="file" name="avatar" (change)="onSelectFile($event)" accept="image/*">
+          <a *ngIf="infoForm.get('avatar')?.value" class="unset" (click)="resetFile($event)">Empty</a>
+        </label>
+        <div  class="error_wrapper" *ngIf="infoForm.get('first_name')?.touched || infoForm.get('first_name')?.dirty">
+          <p class="alert" *ngIf=" infoForm.get('avatar')?.errors?.required && (setAvatar$ | async)">Avatar image is required, (PNG or JPEG) are alowed</p>
+        </div>
+  
+        <!--Show avatar image if in edit mode-->
+        <label class="avatar" *ngIf="!(setAvatar$ | async)">
+          <span class="label_name">Avatar</span>
+          <span class="avatar_wrapper" *ngIf="(infos$ | async) as info">
+            <img src="https://services.ifaith.tv/media/avatar/{{info.user_id}}/{{info.channel_id}}" alt="Avatar">
+          </span>
+          <span class="note">If deleted avatar image is not reversible. Otherwise you can hit cancel any time to get fresh data.</span>
+          <button title="Change avatar" (click)="deleteAvatar()">&times;</button>
+        </label>
+
+
+
+
+        <label>
+          <span>First name</span>
+          <input type="text" formControlName="first_name">
+        </label>
+        <div class="error_wrapper" *ngIf="(infoForm.get('first_name')?.touched && !infoForm.get('first_name')?.valid)">
+          <p class="alert" *ngIf="infoForm.get('first_name')?.errors?.required">First name is required</p>
+          <p class="alert" *ngIf="infoForm.get('first_name')?.errors?.minlength">Must contain at least 3 characters</p>
+        </div>
+        <label>
+          <span>Last name</span>
+          <input type="text" formControlName="last_name">
+        </label>
+        <div class="error_wrapper" *ngIf="(infoForm.get('last_name')?.touched && !infoForm.get('last_name')?.valid)">
+          <p class="alert" *ngIf="infoForm.get('last_name')?.errors?.required">Last name is required</p>
+          <p class="alert" *ngIf="infoForm.get('last_name')?.errors?.minlength">Must contain at least 3 characters</p>
+        </div>
+        <label>
+          <span>Website</span>
+          <input type="url" formControlName="link">
+        </label>
+        <div class="error_wrapper" *ngIf="(infoForm.get('link')?.touched && !infoForm.get('link')?.valid)">
+          <p class="alert" *ngIf="infoForm.get('link')?.errors?.required">Website link is required</p>
+        </div>
+        <label>
+          <span>Description</span>
+          <textarea formControlName="description"></textarea>
+        </label>
+        <div class="error_wrapper" *ngIf="(infoForm.get('description')?.touched && !infoForm.get('description')?.valid)">
+          <p class="alert" *ngIf="infoForm.get('description')?.errors?.required">Description link is required</p>
+          <p class="alert" *ngIf="infoForm.get('description')?.errors?.minlength">Must contain at least 25 characters</p>
+        </div>
+        
+        <div class="controls">
+          <button type="submit" [disabled]="!infoForm.valid" [class.disabled]="!infoForm.valid">Save</button>
+          <a href="#" class="cancel" (click)="onCancel($event)"  disabled>Cancel</a>
+        </div>
+      </form>
+    </div>
+  </section>
+  

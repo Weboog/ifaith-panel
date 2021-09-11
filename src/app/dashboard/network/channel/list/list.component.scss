@@ -1,0 +1,13 @@
+p.title{
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+section.list{
+    display: grid;
+    & > *{
+        border-radius: .5rem;
+    }
+    & > *:nth-of-type(2n+1){
+        background-color:#444;
+      }
+}

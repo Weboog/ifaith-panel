@@ -1,0 +1,104 @@
+section{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.6rem;
+    background: url("~src/assets/wide_bg.jpg");
+    background-size: cover;
+    position: relative;
+    &::after{
+      position: absolute;
+      content: '';
+      display: block;
+      background: linear-gradient(45deg, rgba(black, .7) 20%, rgba(black, .2));
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+  
+    }
+    header{
+      z-index: 1;
+      display: grid;
+      row-gap: 2.5rem;
+      background-color: rgba(black, .7);
+      width: 40rem;
+      padding: 5rem 0 0 5rem;
+      border-radius: 1rem 1rem 0 0;
+      .img_container{
+        //text-align: center;
+        height: 4rem;
+        img{
+          height: 100%;
+        }
+        p.copyright{
+          font-size: 1rem;
+          color: #666
+        }
+      }
+      h1{
+        //text-align: center;
+        font-size: 3rem;
+        font-weight: lighter;
+      }
+    }
+    form{
+      z-index: 1;
+      padding: 3rem 5rem 5rem;
+      box-shadow: 0 0 .1rem rgba(black, .1);
+      width: 40rem;
+      letter-spacing: .05rem;
+      background-color: rgba(black, .7);
+      border-radius:  0 0 1rem 1rem;
+      label{
+        display: block;
+        margin-bottom: 1rem;
+        color: lighten(black, 70);
+        font-size: 1.4rem;
+      }
+      input{
+        transition: all .1s ease-in;
+        display: block;
+        width: 100%;
+        border: none;
+        background: none;
+        outline: none;
+        margin-bottom: 2rem;
+        color: lighten(black, 70);
+        font-size: 1.4rem;
+        font-weight: bold;
+        &:not([type='submit']){
+          padding: 1.5rem;
+          border-bottom: 2px solid transparent;
+          border-radius: 3px;
+          background-color: rgba(#666, .5);
+          &:focus{
+            border-color: darken($color: yellow, $amount: 10);
+          }
+        }
+        &[type='submit']{
+          padding: 1.5rem;
+          background-color: darken($color: yellow, $amount: 10);
+          color: #333;
+          border-radius: 3px;
+          text-transform: uppercase;
+          font-size: 1.4rem;
+          cursor: pointer;
+          border: 2px solid transparent;
+          margin-bottom: 0;
+          &:hover{
+            border-color: darken($color: yellow, $amount: 20);
+          }
+        }
+      }
+      .spacer{
+        height: 1.5rem;
+      }
+      p.error_text{
+        color: red;
+      }
+    }
+  }
+  

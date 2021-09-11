@@ -1,0 +1,51 @@
+<div class="main_container">
+    <aside>
+      <div>
+        <div class="aside_header">
+          <div class="tools">
+            <button (click)="onLogout()">Logout</button>
+          </div>
+          <div class="avatar">
+            <svg>
+              <use href="assets/icons/admin_sprite.svg#src-5"></use>
+            </svg>
+          </div>
+          <p class="names">Joshua BUCKNER</p>
+          <div class="row"></div>
+  <!--        <p class="role"><span>as</span> Administrator</p>-->
+        </div>
+        <div class="menu">
+          <div>
+            <svg><use href="assets/icons/admin_sprite.svg#src-1"></use></svg>
+            <a href="#" [routerLink]="['network']" routerLinkActive="active">Network</a>
+          </div>
+          <div>
+            <svg><use href="assets/icons/admin_sprite.svg#src-6"></use></svg>
+            <a href="#" [routerLink]="['users']" routerLinkActive="active">Users</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <header>
+      <div class="search_container">
+        <p class="title">Dashboard</p>
+        <form>
+  <!--        <div>-->
+  <!--          <input type="search" placeholder="Search">-->
+  <!--          <button>-->
+  <!--            <svg>-->
+  <!--              <use href="assets/icons/admin_sprite.svg#src-3"></use>-->
+  <!--            </svg>-->
+  <!--          </button>-->
+  <!--        </div>-->
+        </form>
+      </div>
+    </header>
+    <main>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+  
+  
