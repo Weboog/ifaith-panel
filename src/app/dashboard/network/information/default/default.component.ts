@@ -23,7 +23,7 @@ export class DefaultComponent implements OnInit {
         this.qParams.userId = <string>params.get('uId');
         this.qParams.channelId = <string>params.get('cId');
         this.qParams.channelName = <string>params.get('cName');
-        return this.network.getInfo(<string>params.get('uId'), <string>params.get('cId'))
+        return this.network.getInfo(<string>params.get('cHs'))
       })
     )
   }

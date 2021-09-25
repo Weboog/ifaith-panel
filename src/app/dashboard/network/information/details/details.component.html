@@ -14,7 +14,7 @@
   <p class="value">{{info.created_at | date:'longDate'}}</p>
   <div class="separator"></div>
   <div class="actions">
-    <a href="#" [routerLink]="['../edit/' + info.channel_id]" [queryParams]="{mode: 'edit', uId: info.user_id, cId: info.channel_id, cName: info.channel_name}">Edit</a>
+    <a href="#" [routerLink]="['../edit/' + info.channel_id]" [queryParams]="{mode: 'edit', uId: info.user_id, cId: info.channel_id, cName: info.channel_name, cHs: info.channel_hash}">Edit</a>
     <a href="#" [routerLink]="['/dashboard/network']">Ok</a>
   </div>
 </section>

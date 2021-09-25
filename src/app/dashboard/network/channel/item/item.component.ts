@@ -9,6 +9,7 @@ import { Channel } from 'src/app/types/channel';
 })
 export class ItemComponent implements OnInit {
 
+  readonly logoAssets = 'https://services.ifaith.tv/media/logo/' //'http://ifaith-services.web/media/logo/'; //'https://services.ifaith.tv/media/logo/';
   @Input() channel!: Channel;
   @Output() deleteSelf = new EventEmitter<string>();
 

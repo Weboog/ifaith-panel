@@ -17,7 +17,7 @@ export class InfoFormComponent implements OnInit {
   timeOut: any;
   message!: string;
   mode!: string;
-  qParams = {uId: '', cId: '', cName: ''};
+  qParams = {uId: '', cId: '', cName: '', cHs: ''};
   file!: File | null;
   setAvatar$!: Observable<boolean>;
   infos$!: Observable<Info>;
@@ -41,6 +41,7 @@ export class InfoFormComponent implements OnInit {
       this.qParams.uId = <string>params.get('uId');
       this.qParams.cId = <string>params.get('cId');
       this.qParams.cName = <string>params.get('uName');
+      this.qParams.cHs = <string>params.get('cHs');
       if(params.get('mode') == 'new') {
         this.mode = 'new';
         this.setAvatar$ = of(true);
@@ -55,7 +56,8 @@ export class InfoFormComponent implements OnInit {
         this.infoForm.get('avatar')?.setValidators([]);
         const uId = <string>params.get('uId');
         const cId = <string>params.get('cId');
-        this.network.getInfo(uId, cId).subscribe(response => {
+        const cHs = <string>params.get('cHs');
+        this.network.getInfo(cHs).subscribe(response => {
           const cInfo = response.channelInfo as Info;
           this.infos$ = of(cInfo);
           this.infoForm.patchValue({
@@ -99,7 +101,7 @@ export class InfoFormComponent implements OnInit {
   onSubmit(): void {
 
     this.formData = new FormData();
-    
+
     const fileType = <string>this.file?.name.split('.')[1]; //Extension name
     const fileName = `${this.infoForm.value.user_id}-${this.infoForm.value.channel_id}.${fileType}`; //Full name of avatar
 

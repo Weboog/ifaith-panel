@@ -1,7 +1,7 @@
 <div class="channel" [ngClass]="{disabled: channel.active == 0}">
   <p class="id">{{ channel.ord }}</p>
   <div class="logo">
-    <img [src]="'https://services.ifaith.tv/media/logo/' + channel.hash" alt="{{ channel.channel }}">
+    <img [src]="logoAssets + channel.hash" alt="{{ channel.channel }}">
   </div>
   <p class="name">{{ channel.channel }}</p>
   <p class="added_at">
@@ -11,7 +11,7 @@
   <div class="actions">
     <!--    [queryParams]="{mode: 'edit', id: channel.id, hash: channel.hash}"-->
     <a href="#" title="Details" [routerLink]="['../../information/default']"
-      [queryParams]="{uId: '1', cId: channel.id, cName: channel.channel}">
+      [queryParams]="{uId: '1', cId: channel.id, cName: channel.channel, cHs: channel.hash}">
       <svg>
         <use href="assets/icons/channel_item.svg#src-3"></use>
       </svg>

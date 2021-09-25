@@ -8,7 +8,7 @@ import {User} from '../types/user';
 })
 export class UserService {
 
-  private readonly URL = 'https://services.ifaith.tv/user' // 'http://ifaith-services.web/user';
+  private readonly URL = 'https://v2-services.ifaith.tv/user'// 'https://services.ifaith.tv/user' // 'http://ifaith-services.web/user';
 
   constructor(private http: HttpClient) { }
 

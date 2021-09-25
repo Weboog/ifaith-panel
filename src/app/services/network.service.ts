@@ -9,7 +9,7 @@ import {Info} from '../types/info';
 })
 export class NetworkService {
 
-  private readonly URL = 'https://services.ifaith.tv/network'; //'http://ifaith-services.web/network';
+  private readonly URL = 'https://services.ifaith.tv/network';// 'http://ifaith-services.web/network';// 'https://services.ifaith.tv/network';
   constructor(private http: HttpClient) { }
 
   getChannel(hash: string): Observable<Channel>{
@@ -44,8 +44,8 @@ export class NetworkService {
     )
   }
 
-  getInfo(userId: string, channelId: string): Observable<{channelInfo: Info|false}> {
-    return this.http.get<{channelInfo: Info|false}>(`${this.URL}/info/${userId}/${channelId}`);
+  getInfo(hash: string): Observable<{channelInfo: Info|false}> {
+    return this.http.get<{channelInfo: Info|false}>(`${this.URL}/info/${hash}`);
   }
 
   updateInfos(fd: FormData): Observable<any> {
