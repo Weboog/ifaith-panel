@@ -1,0 +1,41 @@
+<section class="form">
+  <div>
+    <form [formGroup]="categoryForm" (submit)="onSubmit()" enctype="multipart/form-data">
+      <p
+        *ngIf="executed != undefined" class="message"
+        [ngClass]="{'error': !executed, 'updated': updated }">
+        {{ message }}
+        <a href="#" class="close" routerLink="../" *ngIf="updated">&times;</a>
+      </p>
+      <input type="hidden" formControlName="id"/>
+      <div class="widget">
+        <label>
+          <span class="label">Category name</span>
+          <input
+            type="text"
+            formControlName="name"
+            autofocus
+          />
+        </label>
+        <div class="checking">
+          <p class="available" *ngIf="categoryForm.get('name')?.valid">{{'Available'}}</p>
+          <p class="available error" *ngIf="!categoryForm.get('name')?.valid">{{'Unavailable'}}</p>
+        </div>
+        <div *ngIf="submitted || (categoryForm.get('ord')?.touched && !categoryForm.get('ord')?.valid)" class="errors">
+          <p class="alert" *ngIf="categoryForm.get('ord')?.errors?.required">Order number is required</p>
+          <p class="alert" *ngIf="categoryForm.get('ord')?.value == 0">Zero value is not accepted</p>
+        </div>
+      </div>
+      <div class="controls">
+        <input
+          type="submit"
+          value="Save"
+          [disabled]="!categoryForm.valid"
+          [class.disabled]="!categoryForm.valid"
+        />
+        <a href="#" class="cancel" routerLink="../" (click)="onCancel($event)">Cancel</a>
+      </div>
+      <app-loading *ngIf="loading"></app-loading>
+    </form>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 export interface Info {
   id: string,
-  user_id: string,
+  user_hash: string,
   channel_id: string,
   channel_hash: string,
   first_name: string,

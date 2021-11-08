@@ -11,6 +11,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CheckChannelNameDirective } from 'src/app/validators/checkChannelName.directive';
 import { CheckOrderNumberDirective } from 'src/app/validators/checkOrderNumber.directive';
 import { ChannelListResolver } from 'src/app/guards/channel-list.resolver';
+import {SelectComponent} from '../../shared/select/select.component';
+import {LoadingIndicatorComponent} from '../../shared/loading-indicator/loading-indicator.component';
+import {LoadingComponent} from '../../shared/loading/loading.component';
+import { CategoryComponent } from './category/category.component';
+import { CListComponent } from './category/c-list/c-list.component';
+import { CItemComponent } from './category/c-item/c-item.component';
+import {CategoryListResolver} from '../../guards/category-list.resolver';
+import { CFormComponent } from './category/c-form/c-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'channel', pathMatch: 'full' },
@@ -19,6 +27,13 @@ const routes: Routes = [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: ListComponent, resolve: {channelList: ChannelListResolver} },
       { path: 'form', component: FormComponent },
+    ]
+  },
+  {
+    path: 'categories', component: CategoryComponent, children: [
+      {path: '', redirectTo: 'list', pathMatch: 'full'},
+      {path: 'list', component: CListComponent, resolve: {categoryList: CategoryListResolver}},
+      {path: 'form', component: CFormComponent}
     ]
   },
   {
@@ -38,6 +53,17 @@ const routes: Routes = [
     InformationComponent,
     CheckOrderNumberDirective,
     CheckChannelNameDirective,
+    SelectComponent,
+    CheckOrderNumberDirective,
+    LoadingIndicatorComponent,
+    LoadingComponent,
+    CategoryComponent,
+    CListComponent,
+    CItemComponent,
+    CFormComponent
+  ],
+  exports: [
+    LoadingComponent
   ],
   imports: [
     CommonModule,

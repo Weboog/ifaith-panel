@@ -10,6 +10,7 @@ import { User } from 'src/app/types/user';
 })
 export class UserItemComponent implements OnInit {
 
+  // loading = false;
   @Input() user!: User;
   active$!: Observable<{ status: boolean }>;
 
@@ -20,6 +21,7 @@ export class UserItemComponent implements OnInit {
   }
 
   toggleBlock(hash: string) {
+    // this.loading = true
     let decision = !(!!+this.user.active)
     this.userService.block(hash, decision).subscribe((response) => {
       if (response.done) {
@@ -29,6 +31,7 @@ export class UserItemComponent implements OnInit {
         this.user.active = !decision;
         this.active$ = of({status: !decision})
       }
+      // this.loading = false;
     });
   }
 }

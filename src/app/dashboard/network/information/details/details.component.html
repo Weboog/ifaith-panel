@@ -1,20 +1,20 @@
 <section class="details">
   <div class="avatar">
-    <img src="https://services.ifaith.tv/media/avatar/{{info.user_id}}/{{info.channel_id}}" alt="Avatar">
+    <img src="https://services.ifaith.tv/media/avatar/{{info?.user_hash}}" alt="Avatar">
   </div>
   <p class="label">Owner's names : </p>
-  <p class="value">{{info.first_name + ' ' + info.last_name}}</p>
+  <p class="value">{{info?.first_name + ' ' + info?.last_name}}</p>
   <p class="label">Channel : </p>
-  <p class="value">{{info.channel_name}}</p>
+  <p class="value">{{info?.channel_name}}</p>
   <p class="label">Website : </p>
-  <p class="value"><a target="_blank" class="channel_link" href="{{'http://www.'+info.link}}">{{info.link}}</a></p>
+  <p class="value"><a target="_blank" class="channel_link" href="{{'http://www.'+info?.link}}">{{info?.link}}</a></p>
   <p class="label">Description : </p>
-  <p class="value">{{info.description}}</p>
+  <p class="value">{{info?.description}}</p>
   <p class="label">Date of creation : </p>
-  <p class="value">{{info.created_at | date:'longDate'}}</p>
+  <p class="value">{{info?.created_at | date:'longDate'}}</p>
   <div class="separator"></div>
   <div class="actions">
-    <a href="#" [routerLink]="['../edit/' + info.channel_id]" [queryParams]="{mode: 'edit', uId: info.user_id, cId: info.channel_id, cName: info.channel_name, cHs: info.channel_hash}">Edit</a>
+    <a href="#" [routerLink]="['../edit/' + info?.channel_hash]" [queryParams]="{mode: 'edit', uHs: info?.user_hash, cHs: info?.channel_hash}">Edit</a>
     <a href="#" [routerLink]="['/dashboard/network']">Ok</a>
   </div>
 </section>

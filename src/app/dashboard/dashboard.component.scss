@@ -62,7 +62,7 @@
             justify-self: center;
             height: 2px;
             width: 3rem;
-            background-color: darken(yellow, 10);
+            background-color: #ffbf00;
             margin-top: 2rem;
           }
           .names{
@@ -73,7 +73,7 @@
             margin-top: 2rem;
           }
           .role{
-            color: darken(yellow, 10);
+            color: #ffbf00;
             font-size: 1.2rem;
             font-weight: bold;
           }
@@ -92,7 +92,7 @@
             border-radius: .5rem;
             cursor: pointer;
             &:hover{
-              background-color: darken(yellow, 10);
+              background-color: #ffbf00;
               a{
                 color: #333 !important;
               }
@@ -114,7 +114,7 @@
                 margin-bottom: 1rem;
               }
               &.active{
-                color: darken($color: yellow, $amount: 10);
+                color: #ffbf00;
                 font-weight: bold;
               }
             }
@@ -159,7 +159,7 @@
               border: none;
               border-bottom: 2px solid transparent;
               &:focus{
-                border-bottom-color: darken(yellow, 10);
+                border-bottom-color: darken(#ffbf00, 10);
                 & + button {
                   transform: translateX(0);
                 }
@@ -190,4 +190,3 @@
       }
     }
   }
-  

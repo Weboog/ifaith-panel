@@ -1,0 +1,15 @@
+<ng-container *ngIf="categories$ | async as categories; else loading">
+  <p class="title">Total : {{ categories?.length }}</p>
+  <section class="list">
+    <app-c-item
+      *ngFor="let category of categories; index as i"
+      [category]="category"
+      [order]="i"
+      (deleteSelf)="deleteCategory(category.id)"
+    ></app-c-item>
+  </section>
+</ng-container>
+<ng-template #loading>
+  <p>Loading list ...</p>
+</ng-template>
+<!--<p>Categories work !</p>-->

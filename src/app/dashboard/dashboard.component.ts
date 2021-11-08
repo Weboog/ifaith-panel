@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import {User} from "../types/user";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
+  user!: User;
+
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     let header = document.querySelector('header') as HTMLElement;

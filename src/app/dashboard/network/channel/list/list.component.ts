@@ -23,6 +23,7 @@ export class ListComponent implements OnInit {
     this.channels$ = this.route.data.pipe(
       map(data => {
         let cList = data.channelList;
+        this.channels = cList;
         cList.map((channel: Channel) => {
           const f_date = new Date(<string>channel.created_at);
           channel.created_at = `${f_date.getFullYear()}/${f_date.getMonth() + 1}/${f_date.getDate()}`;

@@ -11,7 +11,7 @@
   <div class="actions">
     <!--    [queryParams]="{mode: 'edit', id: channel.id, hash: channel.hash}"-->
     <a href="#" title="Details" [routerLink]="['../../information/default']"
-      [queryParams]="{uId: '1', cId: channel.id, cName: channel.channel, cHs: channel.hash}">
+      [queryParams]="{uHs: channel.user_hash, cHs: channel.hash, cName: channel.channel}">
       <svg>
         <use href="assets/icons/channel_item.svg#src-3"></use>
       </svg>
@@ -34,4 +34,5 @@
       </svg>
     </a>
   </div>
+  <app-loading *ngIf="loading"></app-loading>
 </div>

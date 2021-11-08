@@ -4,6 +4,7 @@ p.title{
     //font-weight: lighter;
   }
   div.user{
+    position: relative;
     transition: all .2s ease-in;
     display: flex;
     align-items: center;
@@ -14,15 +15,22 @@ p.title{
     }
     &:hover{
       color: #333333;
-      background-color: darken(yellow, 10);
+      background-color: #ffbf00;
       & p.id{
         color: #333333;
       }
-      & svg{
-        fill: #333;
+      svg {
+        color: #333333;
+        fill: #333333;
+      }
+      div.actions {
+        svg{
+          fill: #333333;
+        }
       }
     }
     svg{
+      color: limegreen;
       width: 2.4rem;
       height: 2.4rem;
       fill: white;
@@ -32,12 +40,12 @@ p.title{
     }
     p.id{
       font-weight: bold;
-      color: darken(yellow, 10);
+      color: #ffbf00;
       width: 2.5rem;
       max-width: 2.5rem;
     }
     div.logo{
-  
+
     }
     p.name{
       font-weight: bold;
@@ -58,9 +66,19 @@ p.title{
       a{
         cursor: pointer;
       }
+      svg {
+        fill: crimson;
+      }
     }
     &.blocked{
       color: #777 !important;
+      svg {
+        color: crimson;
+      }
+      div.actions{
+        svg{
+          fill: limegreen;
+        }
+      }
     }
   }
-  

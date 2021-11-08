@@ -15,11 +15,11 @@ section.channel{
           border: none;
           border-radius: .5rem;
           padding: 1rem 1.5rem;
-          background-color: darken(yellow, 10);
+          background-color: #ffbf00;
           font-size: 1.4rem;
           font-weight: bold;
           &:hover{
-            background-color: darken(yellow, 20);
+            background-color: darken(#ffbf00, 10);
           }
         }
       }
@@ -28,4 +28,3 @@ section.channel{
       padding: 0 1rem;
     }
   }
-  

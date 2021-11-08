@@ -1,13 +1,17 @@
-<section *ngIf="channelInfo$ | async as channel">
-    <div *ngIf="channel.channelInfo">
-      <app-details [info]="channel.channelInfo"></app-details>
-    </div>
-    <div class="no-infos" *ngIf="!channel.channelInfo">
+<section>
+  <div *ngIf="channelInfo$ | async as channel; else noData">
+    <app-details [info]="channel"></app-details>
+  </div>
+  <ng-template #noData>
+    <div class="no-infos">
       <p> This channel has no information yet.</p>
       <div class="actions">
-        <a href="#" [routerLink]="['../new']" [queryParams]="{mode: 'new', uId: qParams.userId, cId: qParams.channelId, cName: qParams.channelName}">Add information</a>
+        <a href="#" [routerLink]="['../new']"
+           [queryParams]="{mode: 'new', uHs: qParams.userHash, cHs: qParams.channelHash, cName: qParams.channelName}">Add
+          information</a>
         <a href="#" [routerLink]="['/dashboard/network']">Back</a>
       </div>
     </div>
-  </section>
-  
+  </ng-template>
+</section>
+

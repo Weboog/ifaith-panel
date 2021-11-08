@@ -10,6 +10,7 @@ import { Channel } from 'src/app/types/channel';
 export class ItemComponent implements OnInit {
 
   readonly logoAssets = 'https://services.ifaith.tv/media/logo/' //'http://ifaith-services.web/media/logo/'; //'https://services.ifaith.tv/media/logo/';
+  loading = false;
   @Input() channel!: Channel;
   @Output() deleteSelf = new EventEmitter<string>();
 
@@ -21,7 +22,7 @@ export class ItemComponent implements OnInit {
 
   onDeactivate(hash: string): void {
 
-    const decision = !!!+this.channel.active;
+    const decision = !+this.channel.active;
     this.network.active(hash, decision).subscribe((response: {executed: boolean, affectedRows: number}) => {
       if(response.executed) {
         if(response.affectedRows > 0) {
@@ -32,6 +33,7 @@ export class ItemComponent implements OnInit {
   }
 
   onDelete(hash: string): void{
+    this.loading = true;
     this.deleteSelf.emit(hash);
   }
 

@@ -5,6 +5,7 @@ section.input{
       align-items: center;
       justify-content: center;
       form{
+        position: relative;
         display: grid;
         grid-template-columns: 1fr 1fr;
         //row-gap: 1.5rem;
@@ -61,7 +62,7 @@ section.input{
           background-color: lighten(lightpink, 8);
           border-radius: .2rem;
           &:last-child{
-  
+
           }
         }
         p.available{
@@ -93,7 +94,7 @@ section.input{
           align-self: center;
           justify-self: center;
           &:hover{
-            color: darken(yellow, 10);
+            color: #ffbf00;
           }
         }
         svg{
@@ -147,7 +148,6 @@ section.input{
                 grid-column: 2 / 3;
                 grid-row: 2 / 3;
                 font-weight: normal;
-                font-size: 1.2rem;
               }
             }
             img{
@@ -155,7 +155,7 @@ section.input{
               height: 10rem;
               object-fit: cover;
             }
-            button{
+            a{
               grid-row: 2 / 3;
               grid-column: 1 / 2;
               align-self: start;
@@ -169,6 +169,8 @@ section.input{
               border-radius: .5rem;
               margin: .5rem;
               color: white;
+              cursor: pointer;
+              text-decoration: none;
               cursor: pointer;
             }
           }
@@ -184,7 +186,7 @@ section.input{
             border-bottom: 2px solid transparent;
             outline: none;
             &:focus{
-              border-bottom-color: darken(yellow, 10);
+              border-bottom-color: #ffbf00;
             }
             &[type='file']{
               display: none;
@@ -195,7 +197,7 @@ section.input{
             position: absolute;
             display: block;
             text-decoration: none;
-            border: 1px solid darken(yellow, 10);
+            border: 1px solid #ffbf00;
             top: .5rem;
             right: .5rem;
             bottom: .5rem;
@@ -206,7 +208,7 @@ section.input{
             color: darken(yellow, 10);
             cursor: pointer;
             &:hover{
-              background-color: darken(yellow, 10);
+              background-color: #ffbf00;
               color: #333;
             }
           }
@@ -217,7 +219,7 @@ section.input{
         button[type='submit']{
           transition: background-color .2s ease-in;
           border: none;
-          background-color: darken(yellow, 10);
+          background-color: #ffbf00;
           padding: 1rem 2rem;
           margin-top: .5rem;
           border-radius: 3px;
@@ -226,7 +228,7 @@ section.input{
           font-weight: bold;
           cursor: pointer;
           &:hover{
-            background-color: darken(yellow, 15);
+            background-color: darken(#ffbf00, 15);
           }
           &.disabled{
             background-color: grey;
@@ -243,4 +245,3 @@ section.input{
       }
     }
   }
-  

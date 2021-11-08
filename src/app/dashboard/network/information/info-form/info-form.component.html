@@ -1,22 +1,22 @@
 <section class="input">
     <div>
       <form [formGroup]="infoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-        <p *ngIf="!executed" class="form_title">Create information for the channel</p>
+        <p *ngIf="!executed" class="form_title">{{mode == 'new' ? 'New' : 'Edit'}} information</p>
         <p
           *ngIf="executed" class="message"
           [ngClass]="{'error': !executed, 'updated': updated }">
           {{ message }}
-          
-          <a 
-          href="#" 
+
+          <a
+          href="#"
           class="close"
-          [routerLink]="['../../default']" 
-          [queryParams]="{uId: qParams.uId, cId: qParams.cId, cName: qParams.cName}"
+          [routerLink]="mode == 'edit' ? ['../../default'] : ['../../information/default']"
+          [queryParams]="{uHs: qParams.uHs, cHs: qParams.cHs, cName: qParams.cName}"
           *ngIf="updated">&times;</a>
         </p>
-        <input type="hidden" formControlName="user_id">
-        <input type="hidden" formControlName="channel_id">
-        <input type="hidden" formControlName="channel_name">
+        <input type="hidden" formControlName="user_hash">
+        <input type="hidden" formControlName="channel_hash">
+<!--        <input type="hidden" formControlName="channel_name">-->
 
 
         <label class="file" *ngIf="setAvatar$ | async">
@@ -30,19 +30,16 @@
         <div  class="error_wrapper" *ngIf="infoForm.get('first_name')?.touched || infoForm.get('first_name')?.dirty">
           <p class="alert" *ngIf=" infoForm.get('avatar')?.errors?.required && (setAvatar$ | async)">Avatar image is required, (PNG or JPEG) are alowed</p>
         </div>
-  
-        <!--Show avatar image if in edit mode-->
+
+<!--        Show avatar image if in edit mode-->
         <label class="avatar" *ngIf="!(setAvatar$ | async)">
           <span class="label_name">Avatar</span>
           <span class="avatar_wrapper" *ngIf="(infos$ | async) as info">
-            <img src="https://services.ifaith.tv/media/avatar/{{info.user_id}}/{{info.channel_id}}" alt="Avatar">
+            <img src="https://services.ifaith.tv/media/avatar/{{info.user_hash}}" alt="Avatar">
           </span>
-          <span class="note">If deleted avatar image is not reversible. Otherwise you can hit cancel any time to get fresh data.</span>
-          <button title="Change avatar" (click)="deleteAvatar()">&times;</button>
+<!--          <span class="note">If deleted avatar image is not reversible. Otherwise you can hit cancel any time to get fresh data.</span>-->
+          <a title="Change avatar" (click)="deleteAvatar()">&times;</a>
         </label>
-
-
-
 
         <label>
           <span>First name</span>
@@ -62,7 +59,7 @@
         </div>
         <label>
           <span>Website</span>
-          <input type="url" formControlName="link">
+          <input type="url" formControlName="website">
         </label>
         <div class="error_wrapper" *ngIf="(infoForm.get('link')?.touched && !infoForm.get('link')?.valid)">
           <p class="alert" *ngIf="infoForm.get('link')?.errors?.required">Website link is required</p>
@@ -75,12 +72,12 @@
           <p class="alert" *ngIf="infoForm.get('description')?.errors?.required">Description link is required</p>
           <p class="alert" *ngIf="infoForm.get('description')?.errors?.minlength">Must contain at least 25 characters</p>
         </div>
-        
+
         <div class="controls">
           <button type="submit" [disabled]="!infoForm.valid" [class.disabled]="!infoForm.valid">Save</button>
-          <a href="#" class="cancel" (click)="onCancel($event)"  disabled>Cancel</a>
+          <a href="#" class="cancel" [routerLink]="['/dashboard/network']"  disabled>Cancel</a>
         </div>
+        <app-loading *ngIf="loading"></app-loading>
       </form>
     </div>
   </section>
-  

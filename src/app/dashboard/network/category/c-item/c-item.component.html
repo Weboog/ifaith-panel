@@ -1,0 +1,26 @@
+<div class="category">
+  <p class="id">{{ order + 1 }}</p>
+<!--  <div class="logo">-->
+<!--  </div>-->
+  <p class="name">{{ category.name }}</p>
+  <div class="actions">
+    <a href="#" title="Edit" [routerLink]="['../form']" [queryParams]="{mode: 'edit', id: category.id}">
+      <svg>
+        <use href="assets/icons/channel_item.svg#src-2"></use>
+      </svg>
+    </a>
+<!--    <a (click)="onDeactivate(channel.hash)">-->
+<!--      <svg>-->
+<!--        <title>{{ channel.active == 1 ? 'Deactivate' : 'Activate' }}</title>-->
+<!--        <use *ngIf="channel.active == 1" href="assets/icons/channel_item.svg#src-6"></use>-->
+<!--        <use *ngIf="channel.active == 0 || channel.active == null" href="assets/icons/channel_item.svg#src-7"></use>-->
+<!--      </svg>-->
+<!--    </a>-->
+    <a title="Delete" *ngIf="category.id != '1'" (click)="onDelete(category.id)">
+      <svg>
+        <use href="assets/icons/channel_item.svg#src-1"></use>
+      </svg>
+    </a>
+  </div>
+  <app-loading *ngIf="loading"></app-loading>
+</div>

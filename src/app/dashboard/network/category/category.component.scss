@@ -1,0 +1,30 @@
+section.category{
+  header{
+    display: flex;
+    justify-content: space-between;
+    h1{
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    div.action{
+      a{
+        transition: background-color .2s ease-in;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        border: none;
+        border-radius: .5rem;
+        padding: 1rem 1.5rem;
+        background-color: #ffbf00;
+        font-size: 1.4rem;
+        font-weight: bold;
+        &:hover{
+          background-color: darken(#ffbf00, 10);
+        }
+      }
+    }
+  }
+  .list{
+    padding: 0 1rem;
+  }
+}

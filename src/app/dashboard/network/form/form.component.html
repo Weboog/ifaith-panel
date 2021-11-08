@@ -1,97 +1,6 @@
 <section class="form">
   <div>
-    <!-- <form [formGroup]="inputForm" (submit)="onSubmit()" enctype="multipart/form-data">
-            <p *ngIf="executed != undefined" class="message"
-                [ngClass]="{'error': !executed, 'created': created, 'updated': updated }">
-                {{ message }}
-                <a href="#" class="close" [routerLink]="['../channels']" *ngIf="updated">&times;</a>
-            </p>
-            <input type="hidden" formControlName="hash">
-            <label>
-                <span>Order number</span>
-                <input type="number" id="order" checkOrderNumber formControlName="order">
-                <div>
-                    <p class="available" *ngIf="inputForm.get('order')?.valid">{{'Available'}}</p>
-                    <p class="available error" *ngIf="!inputForm.get('order')?.valid">{{'Unavailable'}}</p>
-                </div>
-            </label>
-            <div class="error_wrapper"
-                *ngIf="submitted || (inputForm.get('order')?.touched && !inputForm.get('order')?.valid)">
-                <p class="alert" *ngIf="inputForm.get('order')?.errors?.required">Order number is required</p>
-                <p class="alert" *ngIf="inputForm.get('order')?.value == 0">Zero value is not accepted</p>
-            </div>
-            <label>
-                <span>Channel name</span>
-                <input type="text" id="channel" checkChannelName formControlName="channel">
-                <div *ngIf="inputForm.get('channel')?.value != '' && inputForm.get('channel')?.dirty">
-                    <p class="available" *ngIf="inputForm.get('channel')?.valid">{{'Available'}}</p>
-                    <p class="available error" *ngIf="!inputForm.get('channel')?.valid">{{'Unavailable'}}</p>
-                </div>
-            </label>
-            <div class="error_wrapper"
-                *ngIf="submitted || (inputForm.get('channel')?.touched && !inputForm.get('channel')?.valid)">
-                <p class="alert" *ngIf="inputForm.get('channel')?.errors?.required">Channel name is required</p>
-                <p class="alert" *ngIf="inputForm.get('channel')?.errors">Must contain at least 3 characters</p>
-            </div>
-            <label>
-                <span>Streaming link</span>
-                <input type="url" id="stream" formControlName="stream">
-            </label>
-            <div class="error_wrapper"
-                *ngIf="submitted || (inputForm.get('stream')?.touched && !inputForm.get('stream')?.valid)">
-                <p class="alert" *ngIf="inputForm.get('stream')?.errors?.required">Stream link is required</p>
-            </div>
-            <label class="file" formArrayName="logoFile">
-                <span>
-                    {{ logoFile == null ? 'Logo ...' : logoFile.name }}
-                </span>
-                <input type="file" name="logoFile" (change)="onSelectFile($event)" accept="image/png">
-                <a *ngIf="logoFile" class="unset" (click)="resetLogoFile($event)">Empty</a>
-            </label>
-            <div class="error_wrapper" *ngIf="submitted">
-                <p class="alert" *ngIf=" inputForm.get('logoFile')?.errors?.required && mode !== 'edit' ">Logo image is
-                    required ( PNG only )</p>
-            </div>
-            <div class="switcher">
-                <div class="file_exists" *ngIf="localGuideExists">
-                    <p>A guide file is stored for this channel.</p>
-                </div>
-                <div class="radio_container">
-
-                    <input id="guide_link" type="radio" name="guide" value="1" checked>
-                    <label class="switch_item" for="guide_link" (click)="resetGuideFile()">Guide Link</label>
-
-                    <input id="guide_file" type="radio" name="guide" value="2">
-                    <label class="switch_item" for="guide_file" (click)="resetGuideLink()">Guide File</label>
-
-
-                    <label id="link" class="widget">
-                        <span>Guide link</span>
-                        <input type="url" id="guide" formControlName="guide">
-                        <div *ngIf="submitted && !guideFile">
-                            <p class="alert" *ngIf="inputForm.get('guide')?.value == null && !localGuideExists">You are
-                                missing the guide link</p>
-                        </div>
-                    </label>
-                    <label id="file" class="widget file">
-                        <span>
-                            {{ guideFile == null ? 'Guide File ...' : guideFile.name }}
-                        </span>
-                        <input type="file" name="guideFile" (change)="onSelectFile($event)" accept="application/json">
-                        <a *ngIf="guideFile" class="unset" (click)="resetGuideFile($event)">Empty</a>
-                        <div *ngIf="submitted && inputForm.get('guide')?.value == null ">
-                            <p class="alert" *ngIf="!guideFile && mode !== 'edit' ">You are missing the guide file.</p>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="controls">
-                <input type="submit" value="Save" [disabled]="!inputForm.valid" [class.disabled]="!inputForm.valid">
-                <a href="#" class="cancel" [routerLink]="['../channels']" disabled>Cancel</a>
-            </div>
-        </form> -->
     <form [formGroup]="channelForm" (submit)="onSubmit()" enctype="multipart/form-data">
-      <!-- <p *ngIf="executed" class="title">Create new channel</p> -->
       <p
         *ngIf="executed != undefined" class="message"
         [ngClass]="{'error': !executed, 'updated': updated }">
@@ -99,7 +8,14 @@
         <!-- [routerLink]="['/']" -->
         <a href="#" class="close" (click)="onCancel($event)" *ngIf="updated">&times;</a>
       </p>
+      <input type="hidden" formControlName="user_hash"/>
       <input type="hidden" formControlName="hash" />
+      <div class="widget">
+        <label>
+          <span class="label">Category</span>
+          <app-select [default]="channel?.category" [options]="options" (change)="onChangeCategory($event)"></app-select>
+        </label>
+      </div>
       <div class="widget">
         <label>
           <span class="label">Order number</span>
@@ -204,7 +120,7 @@
                 <p class="alert" *ngIf="channelForm.get('guide')?.errors?.required">You are missing the guide file</p>
             </div>
           </div>
-          
+
         </div>
       </div>
       <div class="controls">
@@ -217,6 +133,7 @@
         <!-- [routerLink]="['/']" -->
         <a href="#" class="cancel" (click)="onCancel($event)">Cancel</a>
       </div>
+      <app-loading *ngIf="loading"></app-loading>
     </form>
   </div>
 </section>

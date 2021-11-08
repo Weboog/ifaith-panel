@@ -44,8 +44,8 @@ export class NetworkService {
     )
   }
 
-  getInfo(hash: string): Observable<{channelInfo: Info|false}> {
-    return this.http.get<{channelInfo: Info|false}>(`${this.URL}/info/${hash}`);
+  getInfo(hash: string): Observable<Info | null> {
+    return this.http.get<Info | null>(`${this.URL}/info/${hash}`);
   }
 
   updateInfos(fd: FormData): Observable<any> {

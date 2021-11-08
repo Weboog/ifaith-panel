@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import {map, mergeMap} from 'rxjs/operators';
 import { NetworkService } from 'src/app/services/network.service';
 import { Info } from 'src/app/types/info';
 
@@ -12,18 +12,27 @@ import { Info } from 'src/app/types/info';
 })
 export class DefaultComponent implements OnInit {
 
-  channelInfo$!: Observable<{channelInfo: Info | false}>;
-  qParams = {userId: '', channelId: '', channelName: ''};
+  channelInfo$!: Observable<Info | null>;
+  qParams = {userHash: '', channelHash: '', channelName: ''};
 
   constructor(private route: ActivatedRoute, private network: NetworkService) { }
 
   ngOnInit(): void {
+    // this.network.getInfo(<string>this.route.snapshot.queryParamMap.get('cHs')).subscribe(response => {
+    //   console.log(response);
+    // })
     this.channelInfo$ = this.route.queryParamMap.pipe(
       mergeMap(params => {
-        this.qParams.userId = <string>params.get('uId');
-        this.qParams.channelId = <string>params.get('cId');
+        this.qParams.userHash = <string>params.get('uHs');
+        this.qParams.channelHash = <string>params.get('cHs');
         this.qParams.channelName = <string>params.get('cName');
-        return this.network.getInfo(<string>params.get('cHs'))
+        return this.network.getInfo(<string>params.get('cHs')).pipe(
+          map(cInfo => {
+            // @ts-ignore
+            cInfo?.channel_name = this.qParams.channelName;
+            return cInfo;
+          })
+        );
       })
     )
   }

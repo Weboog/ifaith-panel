@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DefaultComponent } from '../information/default/default.component';
-import { DetailsComponent } from '../information/details/details.component';
-import { InfoFormComponent } from '../information/info-form/info-form.component';
+import { DefaultComponent } from './default/default.component';
+import { DetailsComponent } from './details/details.component';
+import { InfoFormComponent } from './info-form/info-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NetworkModule} from '../network.module';
 
 const routes: Routes = [
   {path: '', redirectTo: 'default' , pathMatch: 'full'},
@@ -18,12 +19,13 @@ const routes: Routes = [
   declarations: [
     DetailsComponent,
     DefaultComponent,
-    InfoFormComponent,
+    InfoFormComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NetworkModule
   ]
 })
 export class InformationModule { }

@@ -12,23 +12,24 @@ import { Info } from 'src/app/types/info';
 })
 export class InfoFormComponent implements OnInit {
 
+  loading = false;
   updated = false;
   executed = false;
   timeOut: any;
   message!: string;
   mode!: string;
-  qParams = {uId: '', cId: '', cName: '', cHs: ''};
+  qParams = {uHs: '', cHs: '', cName: ''};
   file!: File | null;
   setAvatar$!: Observable<boolean>;
   infos$!: Observable<Info>;
   formData!: FormData;
   infoForm = new FormGroup({
-    user_id: new FormControl(''),
-    channel_id: new FormControl(''),
-    channel_name: new FormControl(''),
+    user_hash: new FormControl(''),
+    channel_hash: new FormControl(''),
+    // channel_name: new FormControl(''),
     first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    link: new FormControl('', [Validators.required]),
+    website: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required, Validators.minLength(25)]),
     avatar: new FormControl(null, [Validators.required])
   })
@@ -38,35 +39,35 @@ export class InfoFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.queryParamMap.subscribe(params => {
-      this.qParams.uId = <string>params.get('uId');
-      this.qParams.cId = <string>params.get('cId');
-      this.qParams.cName = <string>params.get('uName');
+      this.qParams.uHs = <string>params.get('uHs');
+      this.qParams.cHs = <string>params.get('cHs');
+      this.qParams.cName = <string>params.get('cName');
       this.qParams.cHs = <string>params.get('cHs');
       if(params.get('mode') == 'new') {
         this.mode = 'new';
         this.setAvatar$ = of(true);
         this.infoForm.patchValue({
-          user_id: params.get('uId'),
-          channel_id: params.get('cId'),
-          channel_name: params.get('cName')
+          user_hash: params.get('uHs'),
+          channel_hash: params.get('cHs'),
+          // channel_name: params.get('cName')
         })
       } else if(params.get('mode') == 'edit') {
         this.mode = 'edit';
         this.setAvatar$ = of(false);
         this.infoForm.get('avatar')?.setValidators([]);
-        const uId = <string>params.get('uId');
-        const cId = <string>params.get('cId');
+        const uId = <string>params.get('uHs');
+        const cId = <string>params.get('cHs');
         const cHs = <string>params.get('cHs');
         this.network.getInfo(cHs).subscribe(response => {
-          const cInfo = response.channelInfo as Info;
+          const cInfo = response as Info;
           this.infos$ = of(cInfo);
           this.infoForm.patchValue({
-            user_id: params.get('uId'),
-            channel_id: params.get('cId'),
-            channel_name: params.get('cName'),
+            user_hash: params.get('uHs'),
+            channel_hash: params.get('cHs'),
+            // channel_name: params.get('cName'),
             first_name: cInfo.first_name,
             last_name: cInfo.last_name,
-            link: cInfo.link,
+            website: cInfo.link,
             description: cInfo.description
           })
         })
@@ -102,16 +103,21 @@ export class InfoFormComponent implements OnInit {
 
     this.formData = new FormData();
 
+    this.loading = true;
+
     const fileType = <string>this.file?.name.split('.')[1]; //Extension name
-    const fileName = `${this.infoForm.value.user_id}-${this.infoForm.value.channel_id}.${fileType}`; //Full name of avatar
+    const fileName = `${this.infoForm.value.user_hash}.${fileType}`; //Full name of avatar
 
     for (const [key, item] of Object.entries(this.infoForm.controls)) {
         this.formData.set(`${key}`, item.value);
         if(key == 'avatar' && item.value != null) {
           this.formData.set('avatar', item.value, fileName);
-          this.formData.set('img_extension', fileType);
+          // this.formData.set('img_extension', fileType);
         }
     }
+
+    // this.formData.forEach((v, k) => console.log(k + ' => ' + v));
+    // return;
 
     if(this.mode == 'new') {
       this.network.addInfos(this.formData).subscribe((response: {executed: boolean, saved: boolean, affectedRows: number}) => {
@@ -119,11 +125,12 @@ export class InfoFormComponent implements OnInit {
         this.updated = response.executed;
         this.infoForm.reset();
         this.formData = new FormData();
+        this.loading = false;
         this.showMessage(response, 'Information has been created successfully', 'Can\'t create a information !');
       });
     } else if(this.mode == 'edit') {
-      this.formData.delete('user_id');
-      this.formData.delete('channel_name');
+      // this.formData.delete('user_hash');
+      // this.formData.delete('channel_name');
       if(this.infoForm.get('avatar')?.value == null) this.formData.delete('avatar');
       this.network.updateInfos(this.formData).subscribe((response: {executed: boolean, saved: boolean, affectedRows: number}) => {
         if(response.executed) {
@@ -131,18 +138,12 @@ export class InfoFormComponent implements OnInit {
           this.updated = response.executed
           this.infoForm.reset();
           this.formData = new FormData();
+          this.loading = false;
           this.showMessage(response, 'Information has been updated successfully', 'Can\'t update a information !');
         }
       });
     }
 
-    // this.formData.forEach((v, k) => console.log(k + ' => ' + v))
-
-  }
-
-  onCancel(event: Event): void {
-    event.preventDefault();
-    history.back();
   }
 
   private showMessage(response: {executed: boolean, saved?: boolean, affectedRows: number}, successfulMessage: string, failureMessage: string) {

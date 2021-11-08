@@ -1,0 +1,16 @@
+<div class="select_container" [ngClass]="{open: open}">
+  <p class="summary" [ngClass]="{open: open}" (click)="toggleOpen()">
+    <span>{{summary}}</span>
+    <svg [ngClass]="{open: open}"><use href="assets/svg/sprite.svg#chevron"></use></svg>
+  </p>
+  <ul class="options" [ngClass]="{open: open}">
+    <li
+      *ngFor="let option of options"
+      class="options_item"
+      [attr.data-value]="option.value"
+      [attr.data-label]="option.label"
+      (click)="onSelect($event)"
+      [ngClass]="{selected: selectedElement == option.value.toString()}">{{option.label}}
+    </li>
+  </ul>
+</div>

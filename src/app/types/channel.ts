@@ -4,8 +4,10 @@ enum ActiveStatus {
 }
 export interface Channel {
   id: string,
+  user_hash: string,
   hash: string,
   ord: number,
+  category: number,
   channel: string,
   stream: string,
   guide: string,

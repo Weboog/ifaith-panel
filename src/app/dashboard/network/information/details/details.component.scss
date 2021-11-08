@@ -9,7 +9,7 @@ section.details{
       height: 8rem;
       border-radius: 10rem;
       overflow: hidden;
-      border: 3px solid rgba(darken(yellow, 10), 1);
+      border: 3px solid rgba(#ffbf00, 1);
       box-shadow: 0 8px 5px rgba(black, .3);
       img{
         object-fit: cover;
@@ -35,7 +35,7 @@ section.details{
         display: block;
         padding: .5rem 1rem;
         border-radius: .5rem;
-        border: 1px solid darken(yellow, 10);
+        border: 1px solid #ffbf00;
         color: #fff;
         font-weight: normal;
       }
@@ -53,9 +53,9 @@ section.details{
         color: #333;
         padding: 1rem 2rem;
         border-radius: .5rem;
-        background-color: darken(yellow, 10);
+        background-color: #ffbf00;
         &:hover{
-          background-color: darken(yellow, 15);
+          background-color: #ffbf00;
         }
         &:last-of-type{
           background-color: #777777;
@@ -66,4 +66,3 @@ section.details{
       }
     }
   }
-  

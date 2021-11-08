@@ -1,0 +1,22 @@
+nav{
+  padding: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  //background-color: hotpink;
+  margin-bottom: 1rem;
+  a{
+    display: block;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    //background-color: #666666;
+    color: #888;
+    font-family: 'Roboto';
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+    &.active{
+      background-color: #ffbf00;
+      color: #333333;
+    }
+  }
+}

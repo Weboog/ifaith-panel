@@ -8,7 +8,7 @@ import { Info } from 'src/app/types/info';
 })
 export class DetailsComponent implements OnInit {
 
-  @Input() info!: Info;
+  @Input() info!: Info | null;
 
   constructor() { }
 

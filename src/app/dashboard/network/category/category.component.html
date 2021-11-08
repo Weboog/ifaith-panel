@@ -1,0 +1,12 @@
+<section class="category">
+  <header>
+    <h1>Network <span> / Categories</span></h1>
+    <div class="action" *ngIf="mode !== 'new'">
+      <a href="#" routerLink="form" [queryParams]="{mode: 'new'}">New Category</a>
+<!--      <a href="#" [routerLink]="['form']" [queryParams]="{mode: 'new'}">New Channel</a>-->
+    </div>
+  </header>
+  <div class="list">
+    <router-outlet></router-outlet>
+  </div>
+</section>
