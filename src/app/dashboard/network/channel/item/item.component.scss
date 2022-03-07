@@ -17,6 +17,11 @@
       & svg{
         fill: #333;
       }
+      div.guide_badge{
+        background-color: transparent;
+        border: 1px solid #333;
+        color: #333;
+      }
     }
     &.disabled{
       &:hover{
@@ -76,6 +81,18 @@
       svg{
         margin-right: 1rem;
       }
+    }
+    div.guide_badge{
+      font-size: 1.2rem;
+      background-color: lighten(green, 60);
+      padding: .5rem 1rem;
+      border-radius: .5rem;
+      border: 1px solid transparent;
+      color: darken(green, 10);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: default;
     }
     div.actions{
       display: flex;
