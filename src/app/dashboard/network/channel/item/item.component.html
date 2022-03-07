@@ -8,10 +8,10 @@
     <!--    <svg><use href="assets/icons/channel_item.svg#src-4"></use></svg>-->
     <span>{{ channel.created_at }}</span>
   </p>
-  <div *ngIf="channel.guide || channel?.guideFile?.exists" class="guide_badge" title="Guide type">
+  <div *ngIf="channel.guide || channel.guideFile.exists" class="guide_badge" title="Guide type">
     <em>&duarr;</em>
-    <span *ngIf="channel?.guide">Remote</span>
-    <span *ngIf="channel?.guideFile?.exists">Local</span>
+    <span *ngIf="channel.guide">Remote</span>
+    <span *ngIf="channel.guideFile.exists">Local</span>
   </div>
   <div class="actions">
     <!--    [queryParams]="{mode: 'edit', id: channel.id, hash: channel.hash}"-->
