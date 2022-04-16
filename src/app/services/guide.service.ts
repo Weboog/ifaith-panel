@@ -12,6 +12,10 @@ export class GuideService{
 
   constructor(private http: HttpClient) {}
 
+  read(hash: String): Observable<Guide> {
+    return this.http.get<Guide>(`https://services.ifaith.tv/guide/read/${hash}`);
+  }
+
   getChannels(): Observable<any>{
     return this.http.get(this.URL);
   }
