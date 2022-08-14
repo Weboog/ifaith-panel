@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,11 +17,12 @@ const routes: Routes = [
   declarations: [
     NetworkComponent,
     UsersComponent,
-    GuidesComponent
+    GuidesComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    FormsModule,
+    RouterModule.forChild(routes),
   ]
 })
 export class DashboardModule { }

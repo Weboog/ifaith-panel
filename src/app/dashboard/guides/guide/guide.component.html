@@ -1,0 +1,59 @@
+<section class="guides">
+  <div class="header">
+    <h1>Create a Guide</h1>
+  </div>
+  <div>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="guide" ngModelGroup="guide" #guide="ngModelGroup">
+        <div class="widget">
+          <label for="program_title" class="label">
+            <span class="label">Title</span>
+            <input ngModel name="program_title" type="text" id="program_title" class="form-control" required>
+          </label>
+        </div>
+        <div class="widget">
+          <label>
+            <span class="label">Category</span>
+            <select name="cat" ngModel required>
+              <option value="1">channel 1</option>
+              <option value="2">channel 2</option>
+              <option value="3">channel 3</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="step !== 1" class="program" ngModelGroup="program">
+        <div class="widget">
+          <label for="program_title" class="label">
+            <span class="label">Title</span>
+            <input ngModel name="program_title" type="text" id="program_title" class="form-control" required>
+          </label>
+        </div>
+        <div class="widget">
+          <label for="air_datetime" class="label">
+            <span class="label">Air Datetime</span>
+            <input ngModel name="air_datetime" type="datetime-local" id="air_datetime" class="form-control" required>
+          </label>
+        </div>
+        <div class="widget file">
+          <label class="file">
+            <span class="label">Thumbnail</span>
+            <a *ngIf="filename" class="unset" (click)="resetFile(form, $event); myInput.value = ''">Clear</a>
+            <span class="placeholder" (ngModel)="filename">{{ filename ? filename : 'Pick an Image ...' }}</span>
+            <input #myInput ngModel type="file" name="thumbnail" accept="image/*" (change)="onFileSelected($event)"
+              required>
+          </label>
+        </div>
+      </div>
+      <div class="controls">
+        <input *ngIf="step === 1; else submit" type="button" value="Next" [disabled]="!guide.valid"
+          [class.disabled]="!guide.valid" (click)="guide.valid ? showProg() : ''" />
+        <ng-template #submit>
+          <input type="submit" name="submit" value="Submit" [disabled]="!form.valid" [class.disabled]="!form.valid">
+        </ng-template>
+        <a href="#" class="cancel" (click)="onCancel($event)">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>

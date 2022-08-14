@@ -1,0 +1,19 @@
+.action{
+  display: flex;
+  justify-content: flex-end;
+  a{
+    transition: background-color .2s ease-in;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    border: none;
+    border-radius: .5rem;
+    padding: 1rem 1.5rem;
+    background-color: #ffbf00;
+    font-size: 1.4rem;
+    font-weight: bold;
+    &:hover{
+      background-color: darken(#ffbf00, 10);
+    }
+  }
+}
