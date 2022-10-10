@@ -54,6 +54,7 @@ export class GuideComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.submitted = true;
+    console.log(JSON.stringify(form.value));//Log form value
     return form.value;
   }
 }
