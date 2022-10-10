@@ -30,6 +30,16 @@
         margin-bottom: 2rem;
       }
 
+      .prog-step {
+        font-size: 2rem;
+        text-align: center;
+
+        span {
+          color: #ffbf00;
+          font-weight: bold;
+        }
+      }
+
       div.widget {
         position: relative;
         grid-column: span 2;
@@ -279,7 +289,8 @@
         }
       }
 
-      input[type="submit"], input[type="button"] {
+      input[type="submit"],
+      input[type="button"] {
         transition: background-color 0.2s ease-in;
         border: none;
         background-color: #ffbf00;
@@ -301,6 +312,13 @@
         }
       }
 
+      .add_container {
+        input {
+          width: 100%;
+          margin-top: 2rem;
+        }
+      }
+
       div.controls {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -309,5 +327,25 @@
         margin-top: 1.5rem;
       }
     }
+  }
+}
+
+.shakeBox {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translateX(0);
+  opacity: 1;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10% {
+    transform: translateX(-4px);
+    opacity: .2;
+  }
+
+  90% {
+    transform: translateX(4px);
+    opacity: .8;
   }
 }

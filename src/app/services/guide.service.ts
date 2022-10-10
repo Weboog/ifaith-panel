@@ -8,7 +8,7 @@ import {Guide} from "../types/guide";
 })
 export class GuideService{
 
-  private readonly URL = 'https://services.ifaith.tv/channel'; // 'http://sdfsdfsdfsdfsdf.atwebpages.com/channel'; // ;// 'http://ifaith-services.web/channel'; // ;
+  private readonly URL = 'https://services.ifaith.tv/guide'; // 'http://sdfsdfsdfsdfsdf.atwebpages.com/channel'; // ;// 'http://ifaith-services.web/channel'; // ;
 
   constructor(private http: HttpClient) {}
 
@@ -16,16 +16,12 @@ export class GuideService{
     return this.http.get<Guide>(`https://services.ifaith.tv/guide/read/${hash}`);
   }
 
-  getChannels(): Observable<any>{
-    return this.http.get(this.URL);
-  }
-
-  getGuide(url: string): Observable<Guide> {
-    return this.http.get<Guide>(url);
+  getGuide(id: string): Observable<Guide> {
+    return this.http.get<Guide>(`${this.URL}/${id}`);
   }
 
   setGuide(data: FormData): Observable<any> {
-    return this.http.post(`${this.URL}/guide`, data);
+    return this.http.post(`${this.URL}/create`, data);
   }
 
 }

@@ -4,7 +4,7 @@
   </div>
   <div>
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-      <div class="guide" ngModelGroup="guide" #guide="ngModelGroup">
+      <div class="guide" ngModelGroup="guideModel" #guideModel="ngModelGroup">
         <div class="widget">
           <label for="guide_title" class="label">
             <span class="label">Title</span>
@@ -13,17 +13,16 @@
         </div>
         <div class="widget">
           <label>
-            <span class="label">Category</span>
-            <select name="cat" ngModel required>
-              <option value="1">channel 1</option>
-              <option value="2">channel 2</option>
-              <option value="3">channel 3</option>
+            <span class="label">Channel</span>
+            <select name="channel" ngModel required>
+              <option *ngFor="let ch of channelList" value="{{ch.hash}}">{{ch.name}}</option>
             </select>
           </label>
         </div>
       </div>
 
-      <div *ngIf="step !== 1" class="program" ngModelGroup="program">
+      <div *ngIf="step !== 0" class="program" ngModelGroup="program">
+        <p class="prog-step">Program <span>{{ step }}</span></p>
         <div class="widget">
           <label for="program_title" class="label">
             <span class="label">Title</span>
@@ -41,14 +40,17 @@
             <span class="label">Thumbnail</span>
             <a *ngIf="filename" class="unset" (click)="resetFile(form, $event); myInput.value = ''">Clear</a>
             <span class="placeholder" (ngModel)="filename">{{ filename ? filename : 'Pick an Image ...' }}</span>
-            <input #myInput ngModel type="file" name="thumbnail" accept="image/*" (change)="onFileSelected($event)"
+            <input #myInput ngModel type="file" name="thumbnail" id="thumbnail" accept="image/*" (change)="onFileSelected($event)"
               required>
           </label>
         </div>
       </div>
+      <div class="add_container" *ngIf="step !== 0">
+        <input type="button" value="Add another Program" [class.disabled]="!form.valid" (click)="form.valid ? onAdd(form) : ''"/>
+      </div>
       <div class="controls">
-        <input *ngIf="step === 1; else submit" type="button" value="Next" [disabled]="!guide.valid"
-          [class.disabled]="!guide.valid" (click)="guide.valid ? showProg() : ''" />
+        <input *ngIf="step === 0; else submit" type="button" value="Next" [disabled]="!guideModel.valid"
+          [class.disabled]="!guideModel.valid" (click)="guideModel.valid ? onNext(form) : ''" />
         <ng-template #submit>
           <input type="submit" name="submit" value="Submit" [disabled]="!form.valid" [class.disabled]="!form.valid">
         </ng-template>
