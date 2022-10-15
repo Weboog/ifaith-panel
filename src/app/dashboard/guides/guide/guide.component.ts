@@ -99,14 +99,12 @@ export class GuideComponent implements OnInit {
       thumbnail: progs.thumbnail,
     });
 
-    //Save the form data to json file 
+    //Save the form data to json file
     const fd = new FormData();
     fd.set('id', this.guide.channel);
     fd.set('programs', JSON.stringify({'data': this.guide.programs}));
     this.guideService.setGuide(fd).subscribe({
       next: response => console.log(response)
-      
     });
-    
   }
 }

@@ -1,19 +1,87 @@
-.action{
+header {
   display: flex;
-  justify-content: flex-end;
-  a{
-    transition: background-color .2s ease-in;
-    display: block;
-    text-decoration: none;
-    color: #333;
-    border: none;
-    border-radius: .5rem;
-    padding: 1rem 1.5rem;
-    background-color: #ffbf00;
-    font-size: 1.4rem;
-    font-weight: bold;
-    &:hover{
-      background-color: darken(#ffbf00, 10);
+  justify-content: space-between;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .action {
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+
+    a {
+      transition: background-color .2s ease-in;
+      display: block;
+      text-decoration: none;
+      color: #333;
+      border: none;
+      border-radius: .5rem;
+      padding: 1rem 1.5rem;
+      background-color: #ffbf00;
+      font-size: 1.4rem;
+      font-weight: bold;
+
+      &:hover {
+        background-color: darken(#ffbf00, 10);
+      }
     }
+  }
+}
+
+
+p.title {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.channel {
+  position: relative;
+  transition: all .2s ease-in;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  border-radius: .5rem;
+  font-size: 1.4rem;
+
+  &:nth-of-type(even) {
+    background-color: #444;
+  }
+
+  &:hover {
+    color: #333333;
+    background-color: #ffbf00;
+
+    & p.id {
+      color: #333333;
+    }
+
+    div.guide_badge {
+      background-color: transparent;
+      border: 1px solid #333;
+      color: #333;
+    }
+  }
+
+  p.id {
+    font-weight: bold;
+    color: #ffbf00;
+    width: 2.5rem;
+    max-width: 2.5rem;
+  }
+
+  p.name {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  p.added_at {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-size: 1.2rem;
   }
 }

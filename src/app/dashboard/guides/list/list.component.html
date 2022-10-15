@@ -1,3 +1,14 @@
-<div class="action">
-  <a href="#" routerLink="../guide">New Guide</a>
+  <header>
+    <h1>Network <span> / Channels</span></h1>
+    <div class="action">
+      <a href="#" routerLink="../guide">New Guide</a>
+    </div>
+  </header>
+
+<p class="title">Total: {{total}}</p>
+
+<div class="channel" *ngFor="let ch of channelList">
+  <p class="id">{{ch.id}}</p>
+  <p class="name">{{ch.name}}</p>
+  <p class="added_at">{{ch.created}}</p>
 </div>
